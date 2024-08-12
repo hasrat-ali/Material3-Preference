@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+android {
+    namespace 'com.w3wide.preference'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 34
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.w3wide.preference'
+            artifactId = 'material3-preference'
+            version = '0.0.1'
+
+            pom {
+                name = 'material3-preference'
+                description = 'A Material You theme for androidx.preference.'
+            }
+        }
+    }
+}
+
+dependencies {
+    api 'com.google.android.material:material:1.12.0'
+    api 'androidx.preference:preference:1.2.1'
+}

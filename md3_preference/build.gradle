@@ -12,13 +12,6 @@ android {
         targetSdk 34
     }
 
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -26,16 +19,18 @@ android {
 
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = 'com.w3wide.preference'
-            artifactId = 'material3-preference'
-            version = '0.0.1'
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = 'com.w3wide.preference'
+                artifactId = 'material3-preference'
+                version = '0.0.1'
 
-            pom {
-                name = 'material3-preference'
-                description = 'A Material You theme for androidx.preference.'
+                pom {
+                    name = 'material3-preference'
+                    description = 'A Material You theme for androidx.preference.'
+                }
             }
         }
     }

@@ -1,6 +1,8 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     id 'com.android.library'
-    id 'maven-publish'
+    id 'com.vanniktech.maven.publish'
 }
 
 android {
@@ -19,21 +21,39 @@ android {
 
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                groupId = 'com.w3wide.preference'
-                artifactId = 'material3-preference'
-                version = '0.0.1'
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
 
-                pom {
-                    name = 'material3-preference'
-                    description = 'A Material You theme for androidx.preference.'
-                }
+    coordinates("com.w3wide.preference", "material3-preference", "0.0.2")
+
+    pom {
+        name = "Material3 Preference"
+        description = "A Material You theme for androidx.preference."
+        url = "http://github.com/hasrat-ali/Material3-Preference"
+        licenses {
+            license {
+                name = "Apache License 2.0"
+                url = "https://www.apache.org/licenses/LICENSE-2.0"
             }
         }
+        developers {
+            developer {
+                id = "hasrat-ali"
+                name = "Hasrat A. Khan"
+                email = "hasrat@w3wide.com"
+            }
+        }
+        scm {
+            connection = "scm:git:git://github.com/hasrat-ali/Material3-Preference.git"
+            developerConnection = "scm:git:ssh://github.com/hasrat-ali/Material3-Preference.git"
+            url = "http://github.com/hasrat-ali/Material3-Preference"
+        }
     }
+}
+
+signing {
+    sign publishing.publications
 }
 
 dependencies {

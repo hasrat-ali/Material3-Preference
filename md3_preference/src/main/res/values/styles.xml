@@ -4,6 +4,11 @@
         <item name="switchPreferenceCompatStyle">
             @style/Preference.SwitchPreferenceCompat.Material3
         </item>
+        <item name="preferenceCategoryStyle">@style/Preference.Category.Material3</item>
+    </style>
+
+    <style name="Preference.Category.Material3" parent="Preference.Category.Material">
+        <item name="iconSpaceReserved">false</item>
     </style>
 
     <style name="Preference.SwitchPreferenceCompat.Material3" parent="Preference.SwitchPreferenceCompat.Material">

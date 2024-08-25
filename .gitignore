@@ -84,3 +84,4 @@ lint/tmp/
 
 # Project exclude paths
 /md3_preference/build/
+*.gpg

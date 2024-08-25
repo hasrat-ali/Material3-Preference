@@ -1,15 +1,71 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Preference
-        app:fragment="com.w3wide.example.preference.SettingsActivity$MessagesFragment"
-        app:icon="@drawable/messages"
-        app:key="messages_header"
-        app:title="@string/messages_header" />
+    <PreferenceCategory app:title="Preference category">
 
-    <Preference
-        app:fragment="com.w3wide.example.preference.SettingsActivity$SyncFragment"
-        app:icon="@drawable/sync"
-        app:key="sync_header"
-        app:title="@string/sync_header" />
+        <Preference
+            app:fragment="com.w3wide.example.preference.SettingsActivity$MessagesFragment"
+            app:icon="@drawable/messages"
+            app:key="messages_header"
+            app:title="@string/messages_header" />
 
+        <Preference
+            app:fragment="com.w3wide.example.preference.SettingsActivity$SyncFragment"
+            app:icon="@drawable/sync"
+            app:key="sync_header"
+            app:title="@string/sync_header" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Preference category">
+
+        <EditTextPreference
+            android:defaultValue="Default value"
+            android:key="edit_text_preference_1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Edit text preference"
+            app:dialogMessage="Hello! this is dialog message"
+            app:icon="@drawable/messages" />
+        <ListPreference
+            app:dialogIcon="@drawable/messages"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_values"
+            app:icon="@drawable/messages"
+            app:key="list_preference_1"
+            app:summary="This is simple summary"
+            app:title="List preference"
+            app:useSimpleSummaryProvider="true" />
+        <MultiSelectListPreference
+            app:enabled="false"
+            app:entries="@array/reply_values"
+            app:entryValues="@array/reply_values"
+            app:icon="@drawable/messages"
+            app:key="multi_select_list_preference_1"
+            app:title="Multi select list preference" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Preference category">
+
+        <CheckBoxPreference
+            app:defaultValue="false"
+            app:key="check_box_preference_1"
+            app:title="Check box preference" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="switch_preference_1"
+            app:title="Switch preference" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Preference category">
+        <DropDownPreference
+            app:entries="@array/reply_values"
+            app:entryValues="@array/reply_values"
+            app:key="drop"
+            app:title="DropDown Preference" />
+        <SeekBarPreference
+            app:key="seek"
+
+            app:summary="this is simple summary"
+            app:title="SeekBar Preference" />
+    </PreferenceCategory>
 </PreferenceScreen>

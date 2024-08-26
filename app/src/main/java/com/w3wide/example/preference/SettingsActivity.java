@@ -68,8 +68,6 @@ public class SettingsActivity extends AppCompatActivity implements
                 getClassLoader(),
                 Objects.requireNonNull(pref.getFragment()));
         fragment.setArguments(args);
-        //noinspection deprecation
-        fragment.setTargetFragment(caller, 0);
         // Replace the existing Fragment with the new Fragment
         getSupportFragmentManager().beginTransaction()
                 .replace(binding.settings.getId(), fragment)

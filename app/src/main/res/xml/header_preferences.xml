@@ -36,7 +36,6 @@
             app:title="List preference"
             app:useSimpleSummaryProvider="true" />
         <MultiSelectListPreference
-            app:enabled="false"
             app:entries="@array/reply_values"
             app:entryValues="@array/reply_values"
             app:icon="@drawable/messages"
@@ -58,7 +57,7 @@
 
     <PreferenceCategory app:title="Preference category">
         <DropDownPreference
-            app:entries="@array/reply_values"
+            app:entries="@array/reply_entries"
             app:entryValues="@array/reply_values"
             app:key="drop"
             app:title="DropDown Preference" />

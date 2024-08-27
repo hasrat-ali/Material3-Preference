@@ -36,7 +36,7 @@
             app:title="List preference"
             app:useSimpleSummaryProvider="true" />
         <MultiSelectListPreference
-            app:entries="@array/reply_values"
+            app:entries="@array/reply_entries"
             app:entryValues="@array/reply_values"
             app:icon="@drawable/messages"
             app:key="multi_select_list_preference_1"

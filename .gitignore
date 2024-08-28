@@ -41,6 +41,7 @@ captures/
 .idea/tasks.xml
 .idea/gradle.xml
 .idea/assetWizardSettings.xml
+.idea/appInsightsSettings.xml
 .idea/dictionaries
 .idea/jsonCatalog.xml
 .idea/runConfigurations.xml

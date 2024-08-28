@@ -32,9 +32,9 @@ public class SettingsActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.registerOnSharedPreferenceChangeListener(this);
-        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         if (savedInstanceState == null) {
@@ -56,6 +56,7 @@ public class SettingsActivity extends AppCompatActivity implements
         }
     }
 
+    //todo: use WindowCompat to enable EdgeToEdge effect dynamically
     private void enableEdgeToEdgeWithInsets() {
         EdgeToEdge.enable(this);
         Insetter.builder()

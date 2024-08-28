@@ -35,9 +35,6 @@ public class SettingsActivity extends AppCompatActivity implements
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.registerOnSharedPreferenceChangeListener(this);
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
-        if (preferences.getBoolean("edgeToEdgeEnabled", true)) {
-            enableEdgeToEdgeWithInsets();
-        }
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         if (savedInstanceState == null) {

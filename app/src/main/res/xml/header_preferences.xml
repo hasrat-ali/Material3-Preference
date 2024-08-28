@@ -1,8 +1,54 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="Preference category">
+    <PreferenceCategory app:title="UI Preference">
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="edgeToEdgeEnabled"
+            app:title="Enable EdgeToEdge" />
 
+        <ListPreference
+            app:defaultValue="0"
+            app:dialogIcon="@drawable/messages"
+            app:entries="@array/themes"
+            app:entryValues="@array/theme_values"
+            app:icon="@drawable/messages"
+            app:key="uiMode"
+            app:summary="Choose UI mode for the app"
+            app:title="UI Mode" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Notification Preference">
+        <EditTextPreference
+            android:defaultValue="Hello World!"
+            android:key="welcomeMsg"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Welcome message"
+            app:dialogIcon="@drawable/messages"
+            app:dialogMessage="Write a welcome message..."
+            app:icon="@drawable/messages" />
+
+        <ListPreference
+            app:dialogIcon="@drawable/messages"
+            app:entries="@array/day_names"
+            app:entryValues="@array/day_names"
+            app:icon="@drawable/messages"
+            app:key="preferredDay"
+            app:summary="Select your preferred day of the week"
+            app:title="Preferred day" />
+
+        <MultiSelectListPreference
+            app:defaultValue="@array/weekend"
+            app:entries="@array/day_names"
+            app:entryValues="@array/day_names"
+            app:icon="@drawable/messages"
+            app:key="multi_select_list_preference_1"
+            app:summary="Select the days you prefer"
+            app:title="Choose days" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Preference Fragments">
         <Preference
             app:fragment="com.w3wide.example.preference.SettingsActivity$MessagesFragment"
             app:icon="@drawable/messages"
@@ -16,44 +62,6 @@
             app:title="@string/sync_header" />
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Preference category">
-
-        <EditTextPreference
-            android:defaultValue="Default value"
-            android:key="edit_text_preference_1"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:title="Edit text preference"
-            app:dialogMessage="Hello! this is dialog message"
-            app:icon="@drawable/messages" />
-        <ListPreference
-            app:dialogIcon="@drawable/messages"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:icon="@drawable/messages"
-            app:key="list_preference_1"
-            app:summary="This is simple summary"
-            app:title="List preference"
-            app:useSimpleSummaryProvider="true" />
-        <MultiSelectListPreference
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:icon="@drawable/messages"
-            app:key="multi_select_list_preference_1"
-            app:title="Multi select list preference" />
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="Preference category">
-
-        <CheckBoxPreference
-            app:defaultValue="false"
-            app:key="check_box_preference_1"
-            app:title="Check box preference" />
-        <SwitchPreferenceCompat
-            app:defaultValue="false"
-            app:key="switch_preference_1"
-            app:title="Switch preference" />
-    </PreferenceCategory>
 
     <PreferenceCategory app:title="Preference category">
         <DropDownPreference

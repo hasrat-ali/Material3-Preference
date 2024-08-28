@@ -1,29 +1,43 @@
 package com.w3wide.example.preference;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import com.w3wide.example.preference.databinding.ActivitySettingsBinding;
 
 import java.util.Objects;
 
+import dev.chrisbanes.insetter.Insetter;
+
 public class SettingsActivity extends AppCompatActivity implements
-        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TITLE_TAG = "settingsActivityTitle";
 
     private ActivitySettingsBinding binding;
 
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        preferences.registerOnSharedPreferenceChangeListener(this);
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        if (preferences.getBoolean("edgeToEdgeEnabled", true)) {
+            enableEdgeToEdgeWithInsets();
+        }
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         if (savedInstanceState == null) {
@@ -43,6 +57,16 @@ public class SettingsActivity extends AppCompatActivity implements
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private void enableEdgeToEdgeWithInsets() {
+        EdgeToEdge.enable(this);
+        Insetter.builder()
+                .margin(WindowInsetsCompat.Type.statusBars())
+                .applyToView(binding.toolbar);
+        Insetter.builder()
+                .margin(WindowInsetsCompat.Type.navigationBars())
+                .applyToView(binding.settings);
     }
 
     @Override
@@ -75,6 +99,23 @@ public class SettingsActivity extends AppCompatActivity implements
                 .commit();
         binding.toolbar.setTitle(pref.getTitle());
         return true;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, @Nullable String key) {
+        if (key != null && key.equals("edgeToEdgeEnabled")) {
+            if (preferences.getBoolean("edgeToEdgeEnabled", true)) {
+                enableEdgeToEdgeWithInsets();
+            } else {
+                recreate();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        preferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     public static class HeaderFragment extends PreferenceFragmentCompat {
